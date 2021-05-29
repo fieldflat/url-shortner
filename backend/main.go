@@ -9,7 +9,8 @@ import (
 
 func main() {
 	http.HandleFunc("/short-url/", handlers.GenerateShortURL)
-	http.HandleFunc("/", handlers.RedirectOriginURL)
+	http.HandleFunc("/re/", handlers.RedirectOriginURL)
+	http.HandleFunc("/", handlers.ReturnTopPage)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
