@@ -12,5 +12,6 @@ func main() {
 	http.HandleFunc("/re/", handlers.RedirectOriginURL)
 	http.HandleFunc("/", handlers.ReturnTopPage)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":80", nil))
+	log.Println("Server start🎉")
 }

@@ -24,14 +24,27 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DBNAME: postgres
     restart: always
-  # app:
-  #   image: golang:latest
-  #   container_name: app
-  #   ports:
-  #     - 8080:80
-  #   volumes: 
-  #     - .:/go/src/app
-  #   depends_on: 
-  #     - url_pairs_db
-  #   working_dir: /go/src/app
-  #   command: ["go", "run", "./backend/."]
+  app1:
+    image: golang:latest
+    container_name: app1
+    ports:
+      - 8080:80
+    volumes: 
+      - .:/go/src/app
+    depends_on: 
+      - url_pairs_db
+      - user_session_db
+    working_dir: /go/src/app
+    command: ["go", "run", "./backend/."]
+  app2:
+    image: golang:latest
+    container_name: app2
+    ports:
+      - 8081:80
+    volumes: 
+      - .:/go/src/app
+    depends_on: 
+      - url_pairs_db
+      - user_session_db
+    working_dir: /go/src/app
+    command: ["go", "run", "./backend/."]
