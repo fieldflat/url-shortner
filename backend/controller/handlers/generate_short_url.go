@@ -31,7 +31,7 @@ func GenerateShortURL(w http.ResponseWriter, r *http.Request) {
 		}
 		http.SetCookie(w, cookie)
 
-		db := user_session.GetUserSessionPostgresDB()
+		db := user_session.GetUserSessionRedisDB()
 		db.SetExpirationTime(sid)
 	} else {
 		sid = cookie.Value
