@@ -39,7 +39,7 @@ func GetURLPairsPostgresDB() *URLPairsPostgresDB {
 			panic(err)
 		}
 
-		fmt.Println("Successfully connected!")
+		log.Println("Successfully connected!")
 		psql_instance = &URLPairsPostgresDB{URLPairs: db}
 	}
 	log.Println("[GetURLPairsPostgresDB] psql_instance = ", psql_instance)

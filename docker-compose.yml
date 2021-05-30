@@ -6,7 +6,19 @@ services:
     ports:
       - 5432:5432
     volumes: 
-      - ./backend/internal/sql:/docker-entrypoint-initdb.d
+      - ./backend/internal/sql/url_pairs:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DBNAME: postgres
+    restart: always
+  user_session_db:
+    image: postgres:10.5
+    container_name: user_session_db
+    ports:
+      - 5433:5432
+    volumes: 
+      - ./backend/internal/sql/user_session:/docker-entrypoint-initdb.d
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres

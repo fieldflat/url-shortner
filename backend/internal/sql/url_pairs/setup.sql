@@ -5,10 +5,3 @@ create table url_pairs
   origin_url text,
   sid text
 );
-
-create table user_session
-(
-  id int primary key,
-  sid text,
-  expiration timestamp
-);
