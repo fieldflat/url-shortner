@@ -15,6 +15,6 @@ func RedirectOriginURL(w http.ResponseWriter, r *http.Request) {
 }
 
 func getOriginURL(shortURL string) string {
-	db := url_pairs.GetURLPairsDB()
+	db := url_pairs.GetURLPairsPostgresDB()
 	return db.GetOriginURLInfo(url.ShortURL(shortURL)).OriginURL
 }

@@ -33,6 +33,8 @@ func GenerateShortURL(w http.ResponseWriter, r *http.Request) {
 
 		db := user_session.GetUserSessionInMemoryDB()
 		db.SetExpirationTime(sid)
+	} else {
+		sid = cookie.Value
 	}
 
 	// calcurate hash number
@@ -41,7 +43,7 @@ func GenerateShortURL(w http.ResponseWriter, r *http.Request) {
 	hash := hashFunc(originURL, cookie.Value)
 
 	// store url_pair information
-	db := url_pairs.GetURLPairsDB()
+	db := url_pairs.GetURLPairsPostgresDB()
 	db.SetURLPairs(url.ShortURL(hash), originURLInfo)
 	prefix := "http://localhost:8080/re/" // TODO
 	fmt.Fprintf(w, prefix+hash)
@@ -60,5 +62,5 @@ func hashFunc(originURL string, cookie string) string {
 }
 
 func calculateHashLength(hashStr string) int {
-	return len(hashStr) / 2
+	return len(hashStr) / 4
 }
